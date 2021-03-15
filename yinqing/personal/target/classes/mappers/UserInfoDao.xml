@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.person.dao.UserInfoDao">
+    
+    <resultMap id="relateUser" type="relateUser">
+        <association property="user" javaType="user">
+            <id property="userNum" column="user_num"/>
+            <result property="userId" column="user_id"/>
+            <result property="password" column="password"/>
+            <result property="userName" column="user_name"/>
+            <result property="userEmail" column="user_email"/>
+            <result property="sex" column="sex"/>
+            <result property="userAge" column="user_age"/>
+        </association>
+        <association property="userInfo" javaType="userinfo">
+            <id property="userNum" column="user_num"/>
+            <result property="userPhoto" column="user_photo"/>
+            <result property="userIdent" column="user_ident"/>
+            <result property="userLocate" column="user_locate"/>
+            <result property="userEducation" column="user_education"/>
+            <result property="userUniversity" column="user_university"/>
+        </association>
+    </resultMap>
+    
+    <select id="findById" resultType="userinfo" parameterType="string">
+        select * from userinfo where user_num = #{id}
+    </select>
+
+    <select id="findRelateById" resultMap="relateUser" parameterType="String">
+        select * from user,userinfo where user.user_id=userinfo.user_num and user.user_id=#{id}
+    </select>
+
+    <select id="findUser" parameterType="string" resultType="user">
+        select * from user where user_id=#{id}
+    </select>
+
+    <insert id="addInfo" parameterType="userinfo">
+        insert into userinfo values (#{userinfo.userNum},#{userinfo.userPhoto},#{userinfo.userIdent},#{userinfo.userLocate},
+        #{userinfo.userEducation},#{userinfo.userUniversity})
+    </insert>
+
+    <update id="addMoreInfo" parameterType="userinfo">
+        update userinfo set user_age = #{age},sex=#{sex} where user_id=#{id}
+    </update>
+
+
+
+</mapper>

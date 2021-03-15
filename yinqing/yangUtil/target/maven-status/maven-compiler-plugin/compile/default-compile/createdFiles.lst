@@ -1,0 +1,15 @@
+com\yang\util\EmailSend.class
+com\yang\entities\UserInfo.class
+com\yang\entities\User.class
+com\yang\util\DruidConfig.class
+com\yang\entities\Restful.class
+com\yang\entities\Progress.class
+com\yang\entities\City.class
+com\yang\entities\PolicyInfo.class
+com\yang\util\FastJsonRedisSerializer.class
+com\yang\util\CorsConfig.class
+com\yang\entities\CityPolicy.class
+com\yang\util\CrossDomainConfig.class
+com\yang\entities\Policy.class
+com\yang\entities\RelateUser.class
+com\yang\util\RedisUtil.class

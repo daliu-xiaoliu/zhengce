@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.zhengce.dao.PolicyInfoDao">
+	
+	<resultMap id="policy" type="policyInfo">
+		<result property="policyRoute" column="policy_route"/>
+		<result property="policySimpleInfo" column="policy_simple_info"/>
+		<association property="policy" javaType="policy">
+			<id property="num" column="num"/>
+			<id property="policyId" column="policy_id"/>
+			<result property="policyName" column="policy_name"/>
+			<result property="policyCity" column="city_name"/>
+			<result property="policyTarget" column="policy_target"/>
+			<result property="policyHot" column="policy_hot"/>
+		</association>
+	</resultMap>
+
+	<select id="findFitPeople" resultMap="policy">
+        SELECT
+	    policy.*,
+	    policyInfo.policy_route,
+	    policyInfo.policy_simple_info,
+	    city.city_name
+        FROM
+	        policy,
+	        policyInfo,
+	        city
+	    where policy.policy_id = policyInfo.policy_id
+	    and policy.policy_city=city.city_id
+	    and policy.policy_target like #{target}
+	    limit #{page},#{size}
+    </select>
+
+    <select id="findPolicyByCity" resultMap="policy">
+        SELECT
+	    policy.*,
+	    policyInfo.policy_route,
+	    policyInfo.policy_simple_info,
+	    city.city_name
+        FROM
+	        policy,
+	        policyInfo,
+	        city
+        WHERE
+	        policy.policy_id = policyInfo.policy_id
+	        and policy.policy_city=city.city_id
+	        and city.city_name=#{city}
+        LIMIT #{page},#{size}
+    </select>
+
+	<select id="findFuzzy" resultMap="policy">
+		SELECT
+		po.*,
+		pi.policy_route,
+		pi.policy_simple_info,
+		city.city_name
+		FROM
+		policy po,
+		policyInfo pi,
+		city
+		WHERE
+		po.policy_name LIKE #{name}
+		and po.policy_id=pi.policy_id
+		AND city.city_id = po.policy_city
+		ORDER BY
+		po.policy_id
+		limit #{page},#{size}
+	</select>
+
+	<select id="findPolicyByHot" resultMap="policy">
+		SELECT
+		po.*,
+		pi.policy_route,
+		city.city_name
+		FROM
+		policy po,
+		policyInfo pi,
+		city
+		WHERE
+		po.policy_hot between #{min} and #{max}
+		and po.policy_id=pi.policy_id
+		AND city.city_id = po.policy_city
+		ORDER BY
+		po.policy_id
+		limit #{page},#{size}
+	</select>
+
+	<select id="findFuzzyCity" resultMap="policy">
+		SELECT
+		po.*,
+		pi.policy_route,
+		pi.policy_simple_info,
+		city.city_name
+		FROM
+		policy po,
+		policyInfo pi,
+		city
+		WHERE
+		city.city_name LIKE #{city}
+		and po.policy_id=pi.policy_id
+		AND city.city_id = po.policy_city
+		ORDER BY
+		po.policy_id
+		limit #{page},#{size}
+	</select>
+
+	<select id="findUser" resultType="userinfo" parameterType="string">
+		select * from userinfo where user_num=#{userId}
+	</select>
+</mapper>

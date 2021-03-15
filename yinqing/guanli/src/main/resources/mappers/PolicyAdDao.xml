@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.dao.PolicyAdDao">
+
+    <insert id="addPolicy" parameterType="policy">
+        insert into policy values (#{policy.num},#{policy.policyId},#{policy.policyName},#{policy.policyCity},#{policy.policyTarget},
+        #{policy.policyHot})
+    </insert>
+
+    <insert id="addPolicyInfo" parameterType="policyinfo">
+        insert into policyInfo values (#{policyInfo.policy.num},#{policyInfo.policy.policyId},#{policyInfo.policyRoute},#{policyInfo.policySimpleInfo})
+    </insert>
+
+    <update id="updatePolicyState" parameterType="string">
+        update progress set policy_state=#{state} where user_id=#{userId} and policy_id=#{policyId}
+    </update>
+
+    <select id="findAllProgress" parameterType="int" resultType="progress">
+        select * from progress limit #{page},5
+    </select>
+
+</mapper>
