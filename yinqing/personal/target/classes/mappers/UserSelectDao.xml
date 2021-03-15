@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.person.dao.UserSelectDao">
+
+    <select id="UserProgress" resultType="progress">
+    SELECT
+	u.user_id,
+	u.user_name,
+	p.policy_id,
+	p.policy_name,
+	pro.policy_state
+    FROM
+	user u,
+	progress pro,
+	policy p
+    WHERE
+	u.user_id = pro.user_id
+	AND p.policy_id = pro.policy_id
+	AND u.user_id = #{userId}
+	limit 0,5
+    </select>
+
+
+    <select id="progressQuery" resultType="progress" parameterType="string">
+        select u.user_id,u.user_name,p.policy_id,p.policy_name,pro.policy_state from user u,progress pro,policy p where
+        u.user_id=pro.user_id and p.policy_id=pro.policy_id and u.user_id=#{userId} and p.policy_id=#{policyId}
+    </select>
+
+    <select id="UserPassProgress" resultType="progress">
+         select u.user_id,u.user_name,p.policy_id,p.policy_name,pro.policy_state from user u,progress pro,policy p where
+        u.user_id=pro.user_id and u.user_id=#{userId} and pro.policy_state="进行中" AND pro.policy_id=p.policy_id
+    </select>
+
+    <insert id="addProgress" parameterType="string">
+        insert into progress values (null,#{userId},#{policyId},"审核中");
+    </insert>
+
+
+</mapper>

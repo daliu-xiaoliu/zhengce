@@ -1,0 +1,12 @@
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (1, '1001', '1001', '已完成');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (2, '1001', '1002', '进行中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (3, '1001', '1005', '进行中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (4, '1023', '1006', '审核中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (5, '1023', '94453e9c-8891-4079-bb6b-b3e67f3c4d58', '审核中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (6, '1056', '009647f9-8714-4ab1-b419-96d7238ab174', '审核中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (7, '1056', '1001', '审核中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (8, '1001', '9890963b-ca2a-4e24-ab88-4a3fe9c9c3ca', '进行中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (9, '1001', '1005', '进行中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (10, '1001', '37788483-4fca-4d90-925a-9c8214aed513', '进行中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (11, '1005', '1001', '进行中');
+INSERT INTO `progress`(`num`, `user_id`, `policy_id`, `policy_state`) VALUES (12, '1005', '1002', '进行中');
